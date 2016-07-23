@@ -20,30 +20,27 @@ $(document).ready(function(){
   <style>
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
-      width: 70%;
+      width: 100%;
       margin: auto;
   }
 
   </style>
 </head>
-<body bgcolor="silver">
+<body>
 <div class="header">
   <nav class="navbar navbar-default">
   <div class="container-fluid">
         <div align="right" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="color:#0000FF;background:#EEEEEE;">
-         <img src="C:\Users\user\Documents\Presentation1\logo.png" align=left> 
+         <img src="" align=left> 
       <ul class="nav navbar-nav navbar-right">
             <li><a href="Products">Products</a></li>
             <li><a href="index">Home</a></li>
-            <li><a href="Register">Register</a></li>
              <li><a href="AddProduct">Register</a></li>
       </ul>
     </div>
   </div>
 </nav>
 </div>
-
-
 <div class="table-responsive">
 <table id="myTable" bgcolor="cyan">  
         <thead>  
@@ -74,13 +71,22 @@ $(document).ready(function(){
            </tbody>  
       </table> 
       </div>
-     
-<div align="left" style="color:#0000FF;background:pink;">
-<font size=3><a href="">About Us</a><a href="">Contact</a></font>
-   <img src="C:\Users\user\Documents\Presentation1\fb.png" width=25 height=25 align=right>
-  <img src="C:\Users\user\Documents\Presentation1\twitter.png" width=25 height=25 align=right>
-  <img src="C:\Users\user\Documents\Presentation1\g+.png" width=25 height=25 align=right>
-
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">About US</a></li>
+        <li class="active"><a href="#">CONTACT</a></li>
+        </ul>
+            <ul class="nav navbar-nav navbar-right">
+       
+      <li><a onclick="" class="btn btn-social-icon btn-lg btn-facebook"><i class="fa fa-facebook"></i></a></li>
+      <li><<a onclick="" class="btn btn-social-icon btn-lg btn-dropbox"><i class="fa fa-dropbox"></i></a></li>
+      <li> <a onclick="" class="btn btn-social-icon btn-lg btn-flickr"><i class="fa fa-flickr"></i></a></li>
+    </ul>
   </div>
+</nav>
 </body>
 </html>

@@ -27,10 +27,10 @@ public class customerDAOImpl  {
         logger.info("Customer saved successfully, Customer Details="+c);
     }
  
-    public void updateCustomer(Customer p) {
+    public void updateCustomer(Customer c) {
         Session session = this.sessionFactory.getCurrentSession();
-        session.update(p);
-        logger.info("Customer updated successfully, Customer Details="+p);
+        session.update(c);
+        logger.info("Customer updated successfully, Customer Details="+c);
     }
  
     @SuppressWarnings("unchecked")
