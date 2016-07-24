@@ -8,10 +8,15 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.*;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,6 +39,8 @@ import model.Product;
 @EnableWebMvc
 @Controller
 public class HomeController {
+	
+	@Autowired  private JavaMailSender mailSender;
 	
 	@Autowired
 	  public productServices productService;
@@ -61,11 +68,7 @@ public class HomeController {
     	return "Register";
     }
     
-    @RequestMapping("/done")
-    public String showdone()
-    {
-    	return "done";
-    } 
+   
     @RequestMapping("/FileUploadSuccess")
     public String showFileUploadSuccess(){
     	
@@ -77,7 +80,16 @@ public class HomeController {
     {
     	return "login";
     }
-    
+    @RequestMapping("/send")
+    public String showSend()
+    {
+    	return "send";
+    }
+    @RequestMapping("/sent")
+    public String showSent()
+    {
+    	return "sent";
+    }
     
     
     
@@ -160,7 +172,6 @@ public class HomeController {
     public String logout(ModelMap model) {
         return "logout";
     } 
- 
      
     
     @RequestMapping("/productTable")
@@ -178,13 +189,13 @@ public class HomeController {
 
     
     
-    /* 
+    
     @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
     public String doSendEmail(HttpServletRequest request) {
         // takes input from e-mail form
         String recipientAddress = request.getParameter("email");
         String fname=request.getParameter("first_name");
-        String subject ="musichub :: Your Friend Recommends..." request.getParameter("musichub alert");
+        String subject ="musichub :: Your Friend Recommends..."+ request.getParameter("musichub alert");
         String message = request.getParameter("comments");
         String finalmessage="Hi "+fname+", "+" "+message+"!!! "+"Check this out!!!";
          
@@ -203,8 +214,8 @@ public class HomeController {
         mailSender.send(email);
          
         // forwards to the view named "Result"
-        return "redirect:/productdetails";
-    }*/
+        return "redirect:/sent";
+    }
     
     
     

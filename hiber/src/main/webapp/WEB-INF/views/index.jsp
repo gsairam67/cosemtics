@@ -36,10 +36,10 @@
         <ul class="dropdown-menu">
           <li><a href="login">Admin</a></li>
           <li><a href="login">Customer</a></li>
-         
         </ul>
       </li>
       <li  ><a href="customer">Register</a></li>
+      <li><a  href ="send">Request to Friend</a>
         <li ><a href="AddProduct">Add Product </a></li>
     </ul>
   </div>

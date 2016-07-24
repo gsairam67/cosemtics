@@ -94,7 +94,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                  
                  
                  <!-- ======== Java mail Services API ======= -->
-   <!--   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
 		<property name="username" value="niitemployeesportal@gmail.com" />
@@ -106,6 +106,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 				<prop key="mail.smtp.starttls.enable">true</prop>
 			</props>
 		</property>
-	</bean>-->
+	</bean>
     <!-- ================= end ================= -->
   </beans>
