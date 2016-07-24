@@ -16,20 +16,55 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                     http://www.springframework.org/schema/context                   
                     http://www.springframework.org/schema/context/spring-context.xsd
                     http://www.springframework.org/schema/webflow-config
-        
-                   http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">   
+                    http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd">   
                     
 
  <mvc:annotation-driven/>
 <mvc:default-servlet-handler/>
 <context:annotation-config />
                 <context:component-scan base-package="controllers" />
-                <context:component-scan base-package="DAO" />
+                <context:component-scan base-package="DAO" /> 
     
-             
+                
+              <mvc:resources mapping="/resources/images/**" location="/resources/images/" />
+               
                 <tx:annotation-driven/>
                 
-             
+                <!-- WebFlow Configuration -->
+	<webflow:flow-executor id="flowExecutor" />
+ 
+	<webflow:flow-registry id="flowRegistry" flow-builder-services="flowBuilderServices" base-path="/WEB-INF/views/webflow">
+		<!-- here the id is mapped to invoke this flow -->
+		<webflow:flow-location id="addCart" path="webFlow.xml" />
+	</webflow:flow-registry>
+ 
+	<webflow:flow-builder-services id="flowBuilderServices"
+		view-factory-creator="viewFactoryCreator" />
+ 
+	<bean id="viewFactoryCreator"
+		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+		<property name="viewResolvers">
+			<list>
+				<ref bean="viewResolver" />
+			</list>
+			</property>
+			</bean>
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/views/webflow/" />
+		<property name="suffix" value=".jsp" />
+		 <property name="order" value="0"/>
+	</bean>
+ 
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
+	</bean>
+ 
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="0" />
+	</bean>
+			
                
               <bean
                                 class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -41,12 +76,36 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                                 </property>
                                 <property name="order" value="-1"/>
                 </bean> 
-                
-                <bean id="multipartResolver" 
-    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    <property name="maxUploadSize" value="100000"/>
-</bean>
-               
               
+              <bean id="multipartResolver"
+    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    <!-- one of the properties available; the maximum file size in bytes -->
+    <property name="maxUploadSize" value="100000"/>
+
+    </bean>
+ 
+              
+                
+              <!-- 
+               <bean id="di" class="dao.productServices" />
+               
+                 <bean id="si" class="dao.productDAOImpl" />  -->
+                 
+                 
+                 <!-- ======== Java mail Services API ======= -->
+   <!--   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="niitemployeesportal@gmail.com" />
+		<property name="password" value="password@niit" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>-->
     <!-- ================= end ================= -->
   </beans>

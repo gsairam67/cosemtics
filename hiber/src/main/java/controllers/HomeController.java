@@ -2,8 +2,12 @@ package controllers;
 
 import java.io.BufferedOutputStream;
 
+
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.*;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import com.google.gson.Gson;
 
 import DAO.productDAOImpl;
 import DAO.productServices;
@@ -69,6 +76,15 @@ public class HomeController {
     public String showlogin()
     {
     	return "login";
+    }
+    
+    
+    
+    
+    @RequestMapping("/productDescription")
+    public String showproductDesc()
+    {
+    	return "productDescription";
     }
       
     //For add and update person both
@@ -145,7 +161,54 @@ public class HomeController {
         return "logout";
     } 
  
-       
+     
+    
+    @RequestMapping("/productTable")
+	@ResponseBody
+	public ModelAndView showHome()
+	{
+	List<Product> listtojsp=new ArrayList<Product>();
+		listtojsp=productService.listProduct();
+		String json = new Gson().toJson(listtojsp);  // converting list into Google Gson object which is a string/
+		System.out.println(json);
+		ModelAndView mv=new ModelAndView("productTable");
+		mv.addObject("myJson", json);
+		return mv;
+	}
+
+    
+    
+    /* 
+    @RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+    public String doSendEmail(HttpServletRequest request) {
+        // takes input from e-mail form
+        String recipientAddress = request.getParameter("email");
+        String fname=request.getParameter("first_name");
+        String subject ="musichub :: Your Friend Recommends..." request.getParameter("musichub alert");
+        String message = request.getParameter("comments");
+        String finalmessage="Hi "+fname+", "+" "+message+"!!! "+"Check this out!!!";
+         
+        // prints debug info
+        System.out.println("To: " + recipientAddress);
+        System.out.println("Subject: " + subject);
+        System.out.println("Message: " + finalmessage);
+         
+        // creates a simple e-mail object
+        SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(recipientAddress);
+        email.setSubject(subject);
+        email.setText(finalmessage);
+         
+        // sends the e-mail
+        mailSender.send(email);
+         
+        // forwards to the view named "Result"
+        return "redirect:/productdetails";
+    }*/
+    
+    
+    
+    
 } 
     
     

@@ -11,7 +11,7 @@
 
 		<intercept-url pattern="/Products/**" access="hasRole('ROLE_ADMIN')" />
 		
-		<form-login login-page="/login" default-target-url="/Products" login-processing-url="/perform_login" authentication-failure-url="/loginError?error" always-use-default-target="false"/>
+		<form-login login-page="/login" default-target-url="/Products" login-processing-url="/perform_login" authentication-failure-url="/productTable" always-use-default-target="false"/>
 </http>
 		
 	<!-- <form-login  

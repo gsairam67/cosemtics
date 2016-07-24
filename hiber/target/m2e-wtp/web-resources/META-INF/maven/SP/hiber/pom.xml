@@ -67,6 +67,8 @@
                 <version>1.2</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+
 
 <!-- connecting to H2 database  -->
 
@@ -172,6 +174,12 @@
     <version>2.0</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.springframework.webflow/spring-webflow -->
+<dependency>
+    <groupId>org.springframework.webflow</groupId>
+    <artifactId>spring-webflow</artifactId>
+    <version>2.4.2.RELEASE</version>
+</dependency>
 
 <!-- aspectjrt-->
 
@@ -180,7 +188,19 @@
                 <artifactId>aspectjrt</artifactId>
                 <version>1.5.3</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.2.4</version>
+</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20090211</version>
+</dependency>
 <!-- spring orm -->
 <dependency>
                 <groupId>org.springframework</groupId>
